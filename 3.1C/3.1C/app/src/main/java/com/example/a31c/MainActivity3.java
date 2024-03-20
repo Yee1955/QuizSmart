@@ -46,6 +46,7 @@ public class MainActivity3 extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity3.this, MainActivity2.class);
                 intent.putExtra("USER_DATA", user);
                 startActivity(intent);
+                finish();
             }
         });
 
