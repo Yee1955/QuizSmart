@@ -4,10 +4,12 @@ from flask import Flask, request, jsonify
 from datetime import datetime
 import os
 from gradientai import Gradient
+import certifi
 
 token = 'LXkZBp5a1nGCP16xM7QieYKNz2Ns0tOW'
 workspace_id = 'b5f958d9-ffd4-41bb-a492-704114e02c8e_workspace'
 
+os.environ['SSL_CERT_FILE'] = certifi.where()
 os.environ['GRADIENT_ACCESS_TOKEN'] = token
 os.environ['GRADIENT_WORKSPACE_ID'] = workspace_id
 
