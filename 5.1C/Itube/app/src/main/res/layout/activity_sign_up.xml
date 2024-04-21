@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/FullnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_border"
+        android:paddingLeft="20dp"
+        android:ems="13"
+        android:inputType="text"
+        android:hint="FULL NAME" />
+
+    <EditText
+        android:id="@+id/UsernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_border"
+        android:paddingLeft="20dp"
+        android:ems="13"
+        android:inputType="text"
+        android:hint="USERNAME" />
+
+    <EditText
+        android:id="@+id/PasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_border"
+        android:paddingLeft="20dp"
+        android:ems="13"
+        android:inputType="text"
+        android:hint="PASSWORD" />
+
+    <EditText
+        android:id="@+id/ConfirnEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_border"
+        android:paddingLeft="20dp"
+        android:ems="13"
+        android:inputType="text"
+        android:hint="CONFIRM PASSWORD" />
+
+
+    <Button
+        android:id="@+id/CreateButton"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textSize="14dp" />
+
+
+</LinearLayout>
