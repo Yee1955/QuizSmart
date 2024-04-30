@@ -1,14 +1,16 @@
-package com.example.personalizedlearningexperienceapp;
+package Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class TaskDetailsActivity extends AppCompatActivity {
+import com.example.personalizedlearningexperienceapp.R;
+
+public class TaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_details);
+        setContentView(R.layout.activity_task);
     }
 }

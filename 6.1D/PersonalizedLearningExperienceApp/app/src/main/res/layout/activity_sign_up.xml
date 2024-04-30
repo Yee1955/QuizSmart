@@ -30,14 +30,16 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:padding="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:background="@null"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/avatar" />
 
     <EditText
-        android:id="@+id/UsernameTextText"
+        android:id="@+id/UsernameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -53,7 +55,7 @@
         android:background="@drawable/edit_text_border"/>
 
     <EditText
-        android:id="@+id/EmailTextText"
+        android:id="@+id/EmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -69,7 +71,7 @@
         android:background="@drawable/edit_text_border" />
 
     <EditText
-        android:id="@+id/ConfirmEmailTextText"
+        android:id="@+id/ConfirmEmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -85,7 +87,7 @@
         android:background="@drawable/edit_text_border"/>
 
     <EditText
-        android:id="@+id/PasswordTextText"
+        android:id="@+id/PasswordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -101,7 +103,7 @@
         android:background="@drawable/edit_text_border" />
 
     <EditText
-        android:id="@+id/ConfirmPasswordTextText"
+        android:id="@+id/ConfirmPasswordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -117,7 +119,7 @@
         android:background="@drawable/edit_text_border"/>
 
     <EditText
-        android:id="@+id/PhoneNumberTextText"
+        android:id="@+id/PhoneNumberText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

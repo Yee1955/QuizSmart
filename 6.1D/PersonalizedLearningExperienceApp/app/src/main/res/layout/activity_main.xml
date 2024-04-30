@@ -41,23 +41,23 @@
         android:layout_height="84dp" />
 
     <EditText
-        android:id="@+id/UsernameTextText"
+        android:id="@+id/UsernameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
+        android:background="@drawable/edit_text_border"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        android:paddingLeft="30dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:paddingLeft="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Username"
-        android:textSize="20dp"
-        android:background="@drawable/edit_text_border"/>
+        android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/PasswordTextText"
+        android:id="@+id/PasswordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -73,7 +73,7 @@
         android:background="@drawable/edit_text_border" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/LoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"

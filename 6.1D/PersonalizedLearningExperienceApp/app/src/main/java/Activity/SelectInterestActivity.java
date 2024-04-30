@@ -1,14 +1,16 @@
-package com.example.personalizedlearningexperienceapp;
+package Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ResultActivity extends AppCompatActivity {
+import com.example.personalizedlearningexperienceapp.R;
+
+public class SelectInterestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_select_interest);
     }
 }
