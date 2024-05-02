@@ -4,13 +4,13 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="20dp"
+    android:layout_margin="10dp"
     android:padding="20dp"
     android:gravity="center_vertical"
     android:background="@drawable/card_background">
 
     <TextView
-        android:id="@+id/Question"
+        android:id="@+id/QuestionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="5dp"
@@ -29,6 +29,7 @@ xmlns:tools="http://schemas.android.com/tools"
         android:textColor="@color/white" />
 
     <RadioGroup
+        android:id="@+id/RadioGroup1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="10dp">
@@ -62,6 +63,17 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:text="Answer 3"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:button="@drawable/radio_button_selector" />
+
+        <RadioButton
+            android:id="@+id/AnswerRadioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="Answer 4"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:button="@drawable/radio_button_selector" />

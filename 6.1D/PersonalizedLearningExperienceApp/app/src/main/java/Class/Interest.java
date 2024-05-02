@@ -1,10 +1,12 @@
 package Class;
 
-public class Interest {
-    private String Id;
+import java.io.Serializable;
+
+public class Interest implements Serializable {
+    private long Id;
     private String Topic;
 
-    public String getId() {
+    public long getId() {
         return Id;
     }
 
@@ -12,7 +14,7 @@ public class Interest {
         return Topic;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         Id = id;
     }
 

@@ -26,15 +26,19 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         managerDB = new ManagerDB(this);
-        usernameET = (EditText) findViewById(R.id.UsernameText);
-        emailET = (EditText) findViewById(R.id.EmailText);
-        confirmEmailET = (EditText) findViewById(R.id.ConfirmEmailText);
-        passwordET = (EditText) findViewById(R.id.PasswordText);
-        confirmPasswordET = (EditText) findViewById(R.id.ConfirmPasswordText);
-        phoneNumberET = (EditText) findViewById(R.id.PhoneNumberText);
-        createBTN = (Button) findViewById(R.id.createButton);
 
+        initializeViews();
         setupButton();
+    }
+
+    private void initializeViews() {
+        usernameET = findViewById(R.id.UsernameText);
+        emailET = findViewById(R.id.EmailText);
+        confirmEmailET = findViewById(R.id.ConfirmEmailText);
+        passwordET = findViewById(R.id.PasswordText);
+        confirmPasswordET = findViewById(R.id.ConfirmPasswordText);
+        phoneNumberET = findViewById(R.id.PhoneNumberText);
+        createBTN = findViewById(R.id.createButton);
     }
 
     private void setupButton() {
@@ -60,11 +64,11 @@ public class SignUpActivity extends AppCompatActivity {
                             "Password does not match",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    User user = new User(Username, Email, Password, PhoneNumber, null);
-                    managerDB.addUser(user);
-                    Toast.makeText(SignUpActivity.this,
-                            "Account successfully created",
-                            Toast.LENGTH_SHORT).show();
+                    User user = managerDB.addUser(new User(Username, Email, Password, PhoneNumber, null, null));
+                    Toast.makeText(SignUpActivity.this, "Account successfully created", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, SelectInterestActivity.class);
+                    intent.putExtra("User", user);
+                    startActivity(intent);
                     clearAllET();
                 }
             }

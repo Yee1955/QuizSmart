@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
-    private String Id;
+    private Long Id;
     private String Username;
     private String Email;
     private String Password;
     private String PhoneNumber;
-    private List<Interest> _InterestList;
+    private List<Interest> Interests;
+    private List<Task> Tasks;
 
-    public String getId() {
+    public Long getId() {
         return Id;
     }
 
@@ -32,11 +33,18 @@ public class User implements Serializable {
         return PhoneNumber;
     }
 
-    public List<Interest> get_InterestList() {
-        return _InterestList;
+    public List<Interest> getInterests() {
+        return Interests;
     }
 
-    public void setId(String id) {
+    public List<Task> getTasks() {
+        if (this.Tasks == null) {
+            this.Tasks = new ArrayList<>();
+        }
+        return Tasks;
+    }
+
+    public void setId(Long id) {
         Id = id;
     }
 
@@ -56,18 +64,22 @@ public class User implements Serializable {
         PhoneNumber = phoneNumber;
     }
 
-    public void set_InterestList(List<Interest> _InterestList) {
-        this._InterestList = _InterestList;
+    public void setInterests(List<Interest> interestList) {
+        this.Interests = interestList;
+    }
+    public void setTasks(List<Task> tasks) {
+        this.Tasks = tasks;
     }
     public User() {
-
+        this.Interests = new ArrayList<>();
     }
 
-    public User(String username, String email, String password, String phoneNumber, List<Interest> _InterestList) {
+    public User(String username, String email, String password, String phoneNumber, List<Interest> interests, List<Task> tasks) {
         Username = username;
         Email = email;
         Password = password;
         PhoneNumber = phoneNumber;
-        this._InterestList = _InterestList;
+        this.Interests = (interests != null) ? interests : new ArrayList<>();
+        this.Tasks = (tasks != null) ? tasks : new ArrayList<>();
     }
 }
