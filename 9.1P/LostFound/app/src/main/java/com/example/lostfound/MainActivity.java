@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button CreateBTN, ShowBTN;
+    Button CreateBTN, ShowBTN, MapBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize view components
         CreateBTN = findViewById(R.id.CreateButton);
         ShowBTN = findViewById(R.id.ShowButton);
+        MapBTN = findViewById(R.id.MapButton);
 
         // Setup button
         CreateBTN.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+                startActivity(intent);
+            }
+        });
+        MapBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

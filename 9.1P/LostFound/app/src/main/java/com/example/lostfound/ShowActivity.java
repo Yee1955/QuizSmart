@@ -20,6 +20,16 @@ public class ShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show);
 
         managerDB = new ManagerDB(this);
+        setupRecyclerview();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupRecyclerview();
+    }
+
+    private void setupRecyclerview() {
         PostRV = findViewById(R.id.PostRecyclerView);
         postAdapter = new PostAdapter(managerDB.getPosts(), new PostAdapter.ItemClickListener() {
             @Override

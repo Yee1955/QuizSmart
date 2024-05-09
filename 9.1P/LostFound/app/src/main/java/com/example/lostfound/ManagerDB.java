@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -69,19 +70,24 @@ public class ManagerDB extends SQLiteOpenHelper {
 
 
     public Post createPost(Post newPost) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("name", newPost.getName());
-        values.put("phone", newPost.getPhone());
-        values.put("description", newPost.getDescription());
-        values.put("datetime", newPost.getDate());
-        values.put("location", newPost.getLocation());
-        values.put("type", newPost.getType());
+            ContentValues values = new ContentValues();
+            values.put("name", newPost.getName());
+            values.put("phone", newPost.getPhone());
+            values.put("description", newPost.getDescription());
+            values.put("datetime", newPost.getDate());
+            values.put("location", newPost.getLocation());
+            values.put("type", newPost.getType());
 
-        long id = db.insert(POSTS_TABLE_NAME, null, values);
-        newPost.setId(id);  // Assuming Post has a setId method to set the ID after insertion
-        return newPost;
+            long id = db.insert(POSTS_TABLE_NAME, null, values);
+            newPost.setId(id);  // Assuming Post has a setId method to set the ID after insertion
+            return newPost;
+        } catch (Exception e) {
+            Log.e("ManagerDB", "Failed to create post: " + e.getMessage());
+            return null;
+        }
     }
 
     public boolean deletePost(int id) {

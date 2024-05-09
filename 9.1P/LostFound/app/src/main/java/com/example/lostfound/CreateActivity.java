@@ -1,14 +1,29 @@
 package com.example.lostfound;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CreateActivity extends AppCompatActivity {
     RadioGroup TypeRG;
@@ -21,8 +36,33 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         managerDB = new ManagerDB(this);
 
+        // Initialize Places.
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "AIzaSyAWNWQUI_8spfLPhRv4vs4kxyE08LbZfTU");
+        }
+
+
         InitializeView();
         SetupButton();
+        setUpLocationET();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {  // Ensure this request code matches the one used in startActivityForResult()
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                LocationET.setText(place.getName());  // Set the selected place's name to the LocationET EditText
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.e("CreateActivity", "Error: " + status.getStatusMessage());
+                Toast.makeText(this, "Error: " + status.getStatusMessage(), Toast.LENGTH_LONG).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // User canceled the operation
+                Toast.makeText(this, "Operation canceled", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void InitializeView() {
@@ -59,6 +99,21 @@ public class CreateActivity extends AppCompatActivity {
                     }
                 }
             }
+        });
+    }
+
+    private void setUpLocationET() {
+        LocationET.setFocusable(false);
+        LocationET.setOnClickListener(v -> {
+            // Define the fields to specify which types of place data to return.
+            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
+
+            // Start the autocomplete intent.
+            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                    .build(this);
+            startActivityForResult(intent, 1);
+
+
         });
     }
 
