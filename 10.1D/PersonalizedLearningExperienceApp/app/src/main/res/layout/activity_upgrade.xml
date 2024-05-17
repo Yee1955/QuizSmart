@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/main_background"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/Student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upgrade"
+        android:textSize="60dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/YourExperience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="your experience"
+        android:textSize="34dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="@drawable/card_background">
+
+        <TextView
+            android:id="@+id/StarterTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Starter"
+            android:textSize="36dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DescriptionTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Improve your quiz generation"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/PurchaseButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_button"
+            android:layout_marginTop="10dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="Purchase"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="@drawable/card_background">
+
+        <TextView
+            android:id="@+id/IntermediateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Intermediate"
+            android:textSize="36dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DescriptionTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Improve your quiz generation"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/PurchaseButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_button"
+            android:layout_marginTop="10dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="Purchase"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="@drawable/card_background">
+
+        <TextView
+            android:id="@+id/AdvancedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Advanced"
+            android:textSize="36dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DescriptionTextView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Improve your quiz generation"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/PurchaseButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_button"
+            android:layout_marginTop="10dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="Purchase"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+
+</LinearLayout>
