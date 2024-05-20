@@ -1,0 +1,11 @@
+﻿        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                {{options-builder-provider}}
+                .LogTo(Console.Write)
+                // .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Name })
+                .EnableSensitiveDataLogging();
+            }
+        }

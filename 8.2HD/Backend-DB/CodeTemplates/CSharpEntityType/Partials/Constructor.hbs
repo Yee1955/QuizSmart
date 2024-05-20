@@ -1,0 +1,11 @@
+﻿        public {{class}}()
+        {
+                
+        }
+        
+        public {{class}}({{#each properties}}{{#if @last}} {{property-type}} {{pascal-to-camel-helper property-name}}{{else}}{{property-type}} {{pascal-to-camel-helper property-name}}, {{/if}}{{/each}})
+        {
+        {{#each properties}}
+            {{property-name}} = {{pascal-to-camel-helper property-name}};
+        {{/each}}
+        }
