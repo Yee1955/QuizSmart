@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Welcome,"
+        android:textColor="@color/black"
+        android:textSize="48dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/CompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="company name"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Summary"
+        android:textColor="@color/dark_grey"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_grey"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/PublishedSessions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Published Sessions"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/PublishedSessionsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_grey"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/TotalCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total\nCompleted"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/TotalCompletedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="136"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/StartNewSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start new session"
+        android:textColor="@color/dark_grey"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/StartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:text="Start new session"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <TextView
+        android:id="@+id/RecentActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recent Activity"
+        android:textColor="@color/dark_grey"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

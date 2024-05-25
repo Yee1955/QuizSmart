@@ -32,7 +32,7 @@ CREATE TABLE session (
     status VARCHAR(10) NOT NULL,
     question_string VARCHAR(1000) NULL,
     CONSTRAINT fk_employer
-      FOREIGN KEY(id) 
+      FOREIGN KEY(employer_id) 
         REFERENCES employer(id),
     PRIMARY KEY(id)
 );

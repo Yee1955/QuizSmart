@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <!-- Progress Bar -->
+    <GridLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="10"
+        android:rowCount="1"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true">
+
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+        <View
+            android:layout_width="26dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/background_grey" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/QuestionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Describe a time when you had to work under pressure. How did you handle the situation?"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:layout_below="@id/progressContainer" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/QuestionTextView">
+
+        <RadioButton
+            android:id="@+id/OptionRadioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_option"
+            android:button="@null"
+            android:padding="20dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="I focused on the task at hand, prioritized my work, and stayed calm to ensure that I met the deadline without compromising quality."
+            android:textSize="16dp"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="20dp" />
+
+        <RadioButton
+            android:id="@+id/OptionRadioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_option"
+            android:button="@null"
+            android:padding="20dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="I asked my colleagues for help to distribute the workload and finished the task quickly without much concern for the details."
+            android:textSize="16dp"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="10dp"/>
+
+        <RadioButton
+            android:id="@+id/OptionRadioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_option"
+            android:button="@null"
+            android:padding="20dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="I decided to work longer hours, even if it meant sacrificing some personal time, to ensure that everything was done perfectly."
+            android:textSize="16dp"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/background_option"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonEditable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:button="@null" />
+
+            <EditText
+                android:id="@+id/editTextRadio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text|textMultiLine|textCapSentences"
+                android:padding="20dp"
+                android:ems="10"
+                android:hint="Or write your answer here...\n\n\n"
+                android:fontFamily="@font/pt_sans"
+                android:textSize="16dp"
+                android:textColorHint="@color/dark_grey"
+                android:background="@null"
+                android:maxLines="3"
+                android:gravity="start" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/NextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        style="?android:attr/borderlessButtonStyle" />
+
+</RelativeLayout>

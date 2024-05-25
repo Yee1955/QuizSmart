@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="start">
+
+    <ImageButton
+        android:id="@+id/BackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@raw/ic_back"
+        android:background="@null" />
+
+    <TextView
+        android:id="@+id/Result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Result"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginTop="50dp">
+
+        <!-- Average Score -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:background="@drawable/background_grey"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/AverageScore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Average\nScore"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginRight="80dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:id="@+id/ScoreTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3.56"
+                    android:textColor="@color/black"
+                    android:textSize="40dp"
+                    android:fontFamily="@font/pt_sans_bold"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/MaxScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="/5"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Score Review -->
+        <TextView
+            android:id="@+id/ScoreReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Score Review"
+            android:textColor="@color/dark_grey"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/AlignmentWithJobRequirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alignment with Job Requirements"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical" />
+
+        <ProgressBar
+            android:id="@+id/AlignmentProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/progress_score_employee"
+            android:progress="503"
+            android:max="1000"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/ProblemSolvingAndCriticalThinking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Problem-Solving and Critical Thinking"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical" />
+
+        <ProgressBar
+            android:id="@+id/ProblemSolvingProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/progress_score_employee"
+            android:progress="503"
+            android:max="1000"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/CommunicationSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Communication Skills"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical" />
+
+        <ProgressBar
+            android:id="@+id/CommunicationProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/progress_score_employee"
+            android:progress="503"
+            android:max="1000"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/InnovationAndCreativity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Innovation and Creativity"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical" />
+
+        <ProgressBar
+            android:id="@+id/CulturalProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/progress_score_employee"
+            android:progress="503"
+            android:max="1000"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/CulturalAndTeamFit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cultural and Team Fit"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical" />
+
+        <ProgressBar
+            android:id="@+id/customProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/progress_score_employee"
+            android:progress="503"
+            android:max="1000"
+            android:layout_marginTop="5dp"/>
+
+
+        <!-- Summary -->
+        <TextView
+            android:id="@+id/Summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Summary"
+            android:textColor="@color/dark_grey"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/SummaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Summarize key strengths and areas for improvement, helping candidates understand how they might develop to fit similar roles better."
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:fontFamily="@font/pt_sans"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.2"
+            android:gravity="center_vertical" />
+
+        <!-- Candidate Information -->
+        <TextView
+            android:id="@+id/CandidateInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Candidate Information"
+            android:textColor="@color/dark_grey"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/CandidateInformationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: xxxx@exmaple.com\nFull Name: xxxx xxxx xxxx"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:fontFamily="@font/pt_sans"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.2"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+</FrameLayout>

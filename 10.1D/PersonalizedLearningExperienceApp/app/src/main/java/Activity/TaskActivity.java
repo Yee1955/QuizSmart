@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.personalizedlearningexperienceapp.R;
@@ -19,6 +21,7 @@ import Adapter.*;
 import ManagerDB.*;
 
 public class TaskActivity extends AppCompatActivity {
+    ImageView AvatarIV;
     RecyclerView TaskRV;
     TextView NotificationTV, NameTV;
     VerticalAdapter<Task> taskAdapter;
@@ -34,6 +37,7 @@ public class TaskActivity extends AppCompatActivity {
         TaskRV = (RecyclerView) findViewById(R.id.TaskRecyclerView);
         NotificationTV = (TextView) findViewById(R.id.Notification);
         NameTV = (TextView) findViewById(R.id.YourName);
+        AvatarIV = (ImageView) findViewById(R.id.AvatarImageView);
 
         // Generate task based on user's interests and update notification
         if (user.getTasks().isEmpty()) GenerateTask();
@@ -55,6 +59,16 @@ public class TaskActivity extends AppCompatActivity {
         });
         TaskRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         TaskRV.setAdapter(taskAdapter);
+
+        // Setup imageview
+        AvatarIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskActivity.this, ProfileActivity.class);
+                intent.putExtra("User", user);
+                startActivity(intent);
+            }
+        });
     }
 
     private void GenerateTask() {

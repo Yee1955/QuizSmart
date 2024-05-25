@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="start">
+
+    <ImageButton
+        android:id="@+id/BackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@raw/ic_back"
+        android:background="@null"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/QuestionsReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Questions Review"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_alignParentTop="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/QuestionReviewRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="140dp"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/GmailButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="15dp"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:text="Regenerate"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:elevation="0dp"
+        android:drawableLeft="@raw/ic_regenerate"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/pt_sans_bold"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/PublishButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:text="Publish"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        style="?android:attr/borderlessButtonStyle" />
+
+</RelativeLayout>

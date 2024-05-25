@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Welcome,"
+        android:textColor="@color/black"
+        android:textSize="48dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/startYourLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Let's start your login"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <EditText
+        android:id="@+id/EmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHint="@color/dark_grey"
+        android:textSize="20dp"
+        android:background="@drawable/background_grey"
+        android:hint="Email"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/background_grey"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/PasswordEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textColorHint="@color/dark_grey"
+            android:textSize="20dp"
+            android:layout_weight="1" />
+
+        <ToggleButton
+            android:id="@+id/VisibleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_password_toggle"
+            android:layout_marginRight="20dp"
+            android:textOff=""
+            android:textOn=""
+            android:background="@null" />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="53dp" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <TextView
+        android:id="@+id/OrUse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Or use"
+        android:textColor="@color/dark_grey"
+        android:textSize="20dp"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/GmailButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_grey"
+        android:padding="20dp"
+        android:paddingStart="120dp"
+        android:paddingEnd="120dp"
+        android:text="Gmail"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:elevation="0dp"
+        android:drawableLeft="@raw/ic_gmail"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/DoNotHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textColor="@color/dark_grey"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/SignUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Sign Up"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</LinearLayout>

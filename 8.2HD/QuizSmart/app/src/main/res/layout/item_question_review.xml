@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/QuestionsReviewTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_option"
+        android:button="@null"
+        android:padding="20dp"
+        android:fontFamily="@font/pt_sans"
+        android:text="I decided to work longer hours, even if it meant sacrificing some personal time, to ensure that everything was done perfectly."
+        android:textSize="16dp"
+        android:textColor="@color/dark_grey"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

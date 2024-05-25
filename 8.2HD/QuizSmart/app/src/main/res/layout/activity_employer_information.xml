@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="start">
+
+    <ImageButton
+        android:id="@+id/BackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@raw/ic_back"
+        android:background="@null" />
+
+    <TextView
+        android:id="@+id/SessionGenerationEssentials"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pt_sans_bold"
+        android:text="Session Generation Essentials"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginTop="80dp">
+
+        <EditText
+            android:id="@+id/CompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="20dp"
+            android:ems="10"
+            android:hint="Job Requirement"
+            android:fontFamily="@font/pt_sans"
+            android:textSize="16dp"
+            android:textColorHint="@color/dark_grey"
+            android:background="@drawable/background_grey"
+            android:gravity="start"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/JobRequirementEditText"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:padding="20dp"
+            android:ems="10"
+            android:hint="Job Requirement"
+            android:fontFamily="@font/pt_sans"
+            android:textSize="16dp"
+            android:textColorHint="@color/dark_grey"
+            android:background="@drawable/background_grey"
+            android:maxLines="3"
+            android:gravity="start"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/JobResponsibilitiesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:padding="20dp"
+            android:ems="10"
+            android:hint="Job Responsibilities"
+            android:fontFamily="@font/pt_sans"
+            android:textSize="16dp"
+            android:textColorHint="@color/dark_grey"
+            android:background="@drawable/background_grey"
+            android:maxLines="3"
+            android:gravity="start"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/CompanyCultureEditText"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:padding="20dp"
+            android:ems="10"
+            android:hint="Company Culture"
+            android:fontFamily="@font/pt_sans"
+            android:textSize="16dp"
+            android:textColorHint="@color/dark_grey"
+            android:background="@drawable/background_grey"
+            android:maxLines="3"
+            android:gravity="start"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/GenerateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_black"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:text="Generate"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textAllCaps="false"
+            style="?android:attr/borderlessButtonStyle" />
+
+    </LinearLayout>
+
+</FrameLayout>
