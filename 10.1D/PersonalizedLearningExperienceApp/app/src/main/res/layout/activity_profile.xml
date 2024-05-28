@@ -319,32 +319,35 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ShareButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/green_button"
         android:gravity="center"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:clickable="true">
 
         <TextView
             android:id="@+id/ShareTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SHARE"
-            android:textSize="22dp"
             android:textColor="@color/black"
+            android:textSize="22dp"
             android:textStyle="bold" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="8dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/share"
-            android:layout_marginStart="8dp" />
+            android:src="@drawable/share" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/UpgradeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

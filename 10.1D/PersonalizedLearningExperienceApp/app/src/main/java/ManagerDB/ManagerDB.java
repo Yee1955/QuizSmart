@@ -21,14 +21,31 @@ public class ManagerDB extends SQLiteOpenHelper {
     private static final String DB_NAME = "UserManagerDB.db";
 
     public ManagerDB(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createUsersTable = "CREATE TABLE " + USERS_TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT, phonenumber TEXT)";
-        String createInterestTable = "CREATE TABLE " + INTEREST_TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, topic TEXT)";
-        String createUserInterestTable = "CREATE TABLE " + USER_INTEREST_TABLE_NAME + " (userId INTEGER, interestId INTEGER, PRIMARY KEY(userId, interestId), FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(interestId) REFERENCES interest(id))";
+        String createUsersTable = "CREATE TABLE " + USERS_TABLE_NAME + " ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "username TEXT, "
+                + "email TEXT, "
+                + "password TEXT, "
+                + "phonenumber TEXT, "
+                + "total_questions INTEGER DEFAULT 0, "
+                + "correctly_answered INTEGER DEFAULT 0, "
+                + "incorrect_answers INTEGER DEFAULT 0)";
+
+        String createInterestTable = "CREATE TABLE " + INTEREST_TABLE_NAME + " ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "topic TEXT)";
+
+        String createUserInterestTable = "CREATE TABLE " + USER_INTEREST_TABLE_NAME + " ("
+                + "userId INTEGER, "
+                + "interestId INTEGER, "
+                + "PRIMARY KEY(userId, interestId), "
+                + "FOREIGN KEY(userId) REFERENCES users(id), "
+                + "FOREIGN KEY(interestId) REFERENCES interest(id))";
 
         db.execSQL(createUsersTable);
         db.execSQL(createInterestTable);
@@ -51,26 +68,28 @@ public class ManagerDB extends SQLiteOpenHelper {
         values.put("email", user.getEmail());
         values.put("password", user.getPassword());
         values.put("phonenumber", user.getPhoneNumber());
+        values.put("total_questions", user.getTotalQuestions());
+        values.put("correctly_answered", user.getCorrectlyAnswered());
+        values.put("incorrect_answers", user.getIncorrectAnswers());
 
-        // Insert the user into the database and capture the new ID
         long userId = db.insert(USERS_TABLE_NAME, null, values);
         db.close();
 
         if (userId == -1) {
             Log.e("DB_ERROR", "Failed to add user to database.");
-            return null;  // Return null if the insert failed
+            return null;
         }
 
-        // Set the ID of the user object to the new ID from the database
         user.setId(userId);
         return user;
     }
 
-
-
     public User getUser(Long id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(USERS_TABLE_NAME, new String[]{"id", "username", "email", "password", "phonenumber"}, "id=?", new String[]{String.valueOf(id)}, null, null, null);
+        Cursor cursor = db.query(USERS_TABLE_NAME,
+                new String[]{"id", "username", "email", "password", "phonenumber", "total_questions", "correctly_answered", "incorrect_answers"},
+                "id=?", new String[]{String.valueOf(id)}, null, null, null);
+
         User user = null;
         if (cursor.moveToFirst()) {
             int idIndex = cursor.getColumnIndex("id");
@@ -78,18 +97,22 @@ public class ManagerDB extends SQLiteOpenHelper {
             int emailIndex = cursor.getColumnIndex("email");
             int passwordIndex = cursor.getColumnIndex("password");
             int phoneIndex = cursor.getColumnIndex("phonenumber");
+            int totalQuestionsIndex = cursor.getColumnIndex("total_questions");
+            int correctlyAnsweredIndex = cursor.getColumnIndex("correctly_answered");
+            int incorrectAnswersIndex = cursor.getColumnIndex("incorrect_answers");
 
-            if (idIndex != -1 && usernameIndex != -1 && emailIndex != -1 && passwordIndex != -1 && phoneIndex != -1) {
+            if (idIndex != -1 && usernameIndex != -1 && emailIndex != -1 && passwordIndex != -1 &&
+                    phoneIndex != -1 && totalQuestionsIndex != -1 && correctlyAnsweredIndex != -1 && incorrectAnswersIndex != -1) {
+
                 user = new User();
                 user.setId(cursor.getLong(idIndex));
                 user.setUsername(cursor.getString(usernameIndex));
                 user.setEmail(cursor.getString(emailIndex));
                 user.setPassword(cursor.getString(passwordIndex));
                 user.setPhoneNumber(cursor.getString(phoneIndex));
-
-                // Fetch and set the user's interests
-                List<Interest> interests = getUserInterests(cursor.getLong(idIndex));
-                user.setInterests(interests);
+                user.setTotalQuestions(cursor.getInt(totalQuestionsIndex));
+                user.setCorrectlyAnswered(cursor.getInt(correctlyAnsweredIndex));
+                user.setIncorrectAnswers(cursor.getInt(incorrectAnswersIndex));
             } else {
                 Log.e("DB_ERROR", "One or more columns not found in the users table.");
             }
@@ -111,7 +134,6 @@ public class ManagerDB extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + USERS_TABLE_NAME);
         db.close();
     }
-
 
     public User verifyCredentials(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -301,6 +323,70 @@ public class ManagerDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void insertDummyUserWithInterests() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction(); // Start transaction for atomic operations
+
+        try {
+            // Insert the user into the users table
+            ContentValues userValues = new ContentValues();
+            userValues.put("username", "dummyUser");
+            userValues.put("email", "dummyuser@example.com");
+            userValues.put("password", "password123");
+            userValues.put("phonenumber", "1234567890");
+            userValues.put("total_questions", 10);
+            userValues.put("correctly_answered", 8);
+            userValues.put("incorrect_answers", 2);
+
+            long userId = db.insert(USERS_TABLE_NAME, null, userValues);
+            if (userId == -1) {
+                Log.e("DB_ERROR", "Failed to add user to database.");
+                return;
+            }
+
+            // List of dummy interests
+            List<String> interests = new ArrayList<>();
+            interests.add("Technology");
+            interests.add("Science");
+            interests.add("Art");
+
+            // Insert interests and user-interest relationships
+            for (String interestTopic : interests) {
+                long interestId;
+                // Check if interest already exists
+                Cursor interestCursor = db.query(INTEREST_TABLE_NAME, new String[]{"id"}, "topic=?", new String[]{interestTopic}, null, null, null);
+                if (interestCursor.moveToFirst()) {
+                    interestId = interestCursor.getLong(interestCursor.getColumnIndex("id"));
+                } else {
+                    // Insert new interest
+                    ContentValues interestValues = new ContentValues();
+                    interestValues.put("topic", interestTopic);
+                    interestId = db.insert(INTEREST_TABLE_NAME, null, interestValues);
+                    if (interestId == -1) {
+                        Log.e("DB_ERROR", "Failed to add interest to database.");
+                        return;
+                    }
+                }
+
+                // Insert user-interest relationship
+                ContentValues userInterestValues = new ContentValues();
+                userInterestValues.put("userId", userId);
+                userInterestValues.put("interestId", interestId);
+                long result = db.insert(USER_INTEREST_TABLE_NAME, null, userInterestValues);
+                if (result == -1) {
+                    Log.e("DB_ERROR", "Failed to add user-interest relationship to database.");
+                    return;
+                }
+            }
+
+            db.setTransactionSuccessful(); // Mark the transaction as successful
+        } catch (Exception e) {
+            Log.e("DB_ERROR", "Error while inserting dummy user and interests: " + e.getMessage());
+        } finally {
+            db.endTransaction(); // End transaction
+            db.close(); // Close the database
+        }
+    }
 
 
     public boolean deleteDatabase(Context context) {

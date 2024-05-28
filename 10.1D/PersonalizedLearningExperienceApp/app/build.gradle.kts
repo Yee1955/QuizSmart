@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.paypal.sdk:paypal-android-sdk:2.14.2")
     implementation ("com.squareup.retrofit2:retrofit:(insert latest version)")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.android.flexbox:flexbox:3.0.0")

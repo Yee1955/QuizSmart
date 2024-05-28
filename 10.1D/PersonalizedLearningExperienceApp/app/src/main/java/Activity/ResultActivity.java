@@ -36,6 +36,13 @@ public class ResultActivity extends AppCompatActivity {
         // Get data from previous activity
         resultList = (List<Result>) getIntent().getSerializableExtra("ResultList");
 
+        // Add question counting to user object
+        for (Result result : resultList) {
+            user.setTotalQuestions(user.getTotalQuestions() + 1); // Counting total answered
+            if (result.getCorrect()) user.setCorrectlyAnswered(user.getCorrectlyAnswered() + 1);
+            else user.setIncorrectAnswers(user.getIncorrectAnswers() + 1);
+        }
+
         // Setup recyclerview
         ResultRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         ResultAdapter = new VerticalAdapter(resultList, null);

@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         passwordET = (EditText) findViewById(R.id.PasswordText);
         loginBTN = (Button) findViewById(R.id.LoginButton);
         signUpTV = (TextView) findViewById(R.id.NeedAnAccountTextView);
-
         setupButton();
     }
 
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     user = managerDB.verifyCredentials(username, password);
                     if (user != null) {
                         List<Interest> interests = managerDB.getUserInterests(user.getId()); // Fetch updated interests
+                        user = managerDB.getUser(user.getId());
                         user.setInterests(interests); // Update user object
                         Intent intent;
                         if (interests != null && !interests.isEmpty()) {

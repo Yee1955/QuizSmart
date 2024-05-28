@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import Adapter.DisplayableItem;
+import ManagerDB.ManagerDB;
 
 public class Result implements Serializable, DisplayableItem {
     private String Title;
@@ -30,14 +31,17 @@ public class Result implements Serializable, DisplayableItem {
         }
         Description = sb.toString();
     }
-    @Override
+
     public String getTitle() {
         return Title;
     }
 
-    @Override
     public String getDescription() {
         return Description;
+    }
+
+    public Boolean getCorrect() {
+        return Correct;
     }
 
 
