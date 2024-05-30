@@ -17,6 +17,12 @@ namespace Backend_DB.Persistence
             return context.Employers.ToList();
         }
 
+        public List<Session> GetEmployerSession(int Id)
+        {
+            using var context = new Context();
+            return context.Sessions.Where(s => s.EmployerId == Id).ToList();
+        }
+
         public (Employer?, bool) InsertEmployer(Employer Employer)
         {
             using var context = new Context();

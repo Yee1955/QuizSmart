@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LoadingIcon"
+    android:layout_width="wrap_content"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/circle1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/ic_progress"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentTop="true"/>
+
+    <View
+        android:id="@+id/circle2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/ic_progress"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"/>
+
+    <View
+        android:id="@+id/circle3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/ic_progress"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_alignParentLeft="true"/>
+
+    <View
+        android:id="@+id/circle4"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/ic_progress"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"/>
+</RelativeLayout>

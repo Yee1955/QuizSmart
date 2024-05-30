@@ -2928,11 +2928,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/tanyee/Desktop/Deakin Year 2 Trimester 1/SIT305 Mobile Application Development/Task/8.2HD/Backend-DB/Backend-DB.csproj",
+      "projectUniqueName": "/Users/tanyee/Desktop/SIT305-YEE-TAN/Backend-DB/Backend-DB.csproj",
       "projectName": "Backend-DB",
-      "projectPath": "/Users/tanyee/Desktop/Deakin Year 2 Trimester 1/SIT305 Mobile Application Development/Task/8.2HD/Backend-DB/Backend-DB.csproj",
+      "projectPath": "/Users/tanyee/Desktop/SIT305-YEE-TAN/Backend-DB/Backend-DB.csproj",
       "packagesPath": "/Users/tanyee/.nuget/packages/",
-      "outputPath": "/Users/tanyee/Desktop/Deakin Year 2 Trimester 1/SIT305 Mobile Application Development/Task/8.2HD/Backend-DB/obj/",
+      "outputPath": "/Users/tanyee/Desktop/SIT305-YEE-TAN/Backend-DB/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tanyee/.nuget/NuGet/NuGet.Config"

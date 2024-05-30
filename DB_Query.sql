@@ -1,0 +1,65 @@
+CREATE DATABASE sit305
+
+DROP TABLE IF EXISTS employee_session;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS session;
+DROP TABLE IF EXISTS employer;
+
+CREATE TABLE employee (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    email VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE employer (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    email VARCHAR(255) NOT NULL,
+    company_name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE session (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    employer_id INT NOT NULL,
+    session_code VARCHAR(10) NOT NULL,
+    job_position VARCHAR(100) NOT NULL,
+    job_requirement VARCHAR(1000) NOT NULL,
+    job_responsibilities VARCHAR(1000) NOT NULL,
+    company_culture VARCHAR(1000) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    question_string VARCHAR(1000) NULL,
+    CONSTRAINT fk_employer
+      FOREIGN KEY(employer_id) 
+        REFERENCES employer(id),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE employee_session (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    employee_id INT NOT NULL,
+    session_id INT NOT NULL,
+    progress INT NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    answer_string VARCHAR(1000) NULL,
+    score_alignment FLOAT NULL,
+    score_problem_solving FLOAT NULL,
+    score_communication FLOAT NULL,
+    score_innovation FLOAT NULL,
+    score_team_fit FLOAT NULL,
+    summary VARCHAR(1000) NULL,
+    CONSTRAINT fk_employee
+      FOREIGN KEY(employee_id) 
+        REFERENCES employee(id),
+    CONSTRAINT fk_session
+      FOREIGN KEY(session_id) 
+        REFERENCES session(id),
+    PRIMARY KEY(id)
+);
+
+INSERT INTO employee (email, full_name, password)
+VALUES ('xxx@example.com', 'Alice Chong', 12345);
+INSERT INTO employer (email, company_name, password)
+VALUES ('x.com', 'SpaceX', 123);
