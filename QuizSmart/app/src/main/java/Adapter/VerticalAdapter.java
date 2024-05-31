@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,40 +23,53 @@ public class VerticalAdapter<T extends DisplayableItem> extends RecyclerView.Ada
 
     private List<T> data;
     private onItemClickListener<T> listener;
-    private String inputClass;
 
     public VerticalAdapter(List<T> data, onItemClickListener<T> listener) {
         this.data = data;
         this.listener = listener;
-        // Determine the class of the first item to configure the view type
-        if (!data.isEmpty()) {
-            if (data.get(0) instanceof Task) this.inputClass = "Task";
-            else if (data.get(0) instanceof Quiz) this.inputClass = "Quiz";
-            else if (data.get(0) instanceof Result) this.inputClass = "Result";
-        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView TV1, TV2;
-        ImageView TaskBTN;
-        RadioButton BTN1, BTN2, BTN3, BTN4;
-        RadioGroup RG1;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            if (data.get(0) instanceof QuizResponse) initializeTaskView(itemView);
+            if (data.get(0) instanceof QuizResponse) initializeQuestionView(itemView);
+            else if (data.get(0) instanceof EmployeeSession) initializeCandidatesView(itemView);
         }
 
-        public void taskBind(T item) {
-            TV1.setText(item.getTitle());
-            TV2.setText(item.getDescription());
-            TaskBTN.setOnClickListener(view -> listener.itemClick(item, null));
+        // ------------------ Question Review Adapter ------------------
+        TextView QuestionsReviewTV;
+        public void questionsBind(T item, int questionNumber) {
+            QuestionsReviewTV.setText(questionNumber + ". " + item.getQuestion());
         }
 
-        private void initializeTaskView(View itemView) {
-            TV1 = itemView.findViewById(R.id.GeneratedTaskTextView);
-            TV2 = itemView.findViewById(R.id.DescriptionTextView);
-            TaskBTN = itemView.findViewById(R.id.imageViewButton);
+        private void initializeQuestionView(View itemView) {
+            QuestionsReviewTV = itemView.findViewById(R.id.QuestionsReviewTextView);
+        }
+
+        // ------------------ Candidates Adapter ------------------
+        TextView FullNameTV, ScoreTV;
+        ImageButton NextBTN;
+        public void candidatesBind(T item) {
+            item.getEmployeeAsync(new EmployeeSession.EmployeeCallback() {
+                @Override
+                public void onEmployeeLoaded(Employee employee) {
+                    FullNameTV.setText(employee.getFullName());
+                }
+
+                @Override
+                public void onError(String error) {
+                    FullNameTV.setText("Unknown");
+                }
+            });
+            ScoreTV.setText(String.valueOf(item.getAverageScore()));
+            NextBTN.setOnClickListener(view -> listener.itemClick(item));
+        }
+
+        private void initializeCandidatesView(View itemView) {
+            FullNameTV = itemView.findViewById(R.id.FullNameTextView);
+            ScoreTV = itemView.findViewById(R.id.ScoreTextView);
+            NextBTN = itemView.findViewById(R.id.NextButton);
         }
 
     }
@@ -64,12 +78,10 @@ public class VerticalAdapter<T extends DisplayableItem> extends RecyclerView.Ada
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if (inputClass.equals("Task")) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
-        } else if (inputClass.equals("Quiz")) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_item, parent, false);
-        } else if (inputClass.equals("Result")) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_item, parent, false);
+        if (data.get(0) instanceof QuizResponse) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_question_review, parent, false);
+        } else if (data.get(0) instanceof EmployeeSession) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_candidate, parent, false);
         } else {
             throw new IllegalArgumentException("Unknown class type for items");
         }
@@ -78,9 +90,8 @@ public class VerticalAdapter<T extends DisplayableItem> extends RecyclerView.Ada
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (inputClass.equals("Task")) holder.taskBind(data.get(position));
-        else if (inputClass.equals("Quiz")) holder.quizBind(data.get(position), position);
-        else if (inputClass.equals("Result")) holder.ResultBind(data.get(position), position);
+        if ((data.get(0) instanceof QuizResponse)) holder.questionsBind(data.get(position), position + 1);
+        else if (data.get(0) instanceof EmployeeSession) holder.candidatesBind((data.get(position)));
     }
 
     @Override
@@ -89,6 +100,6 @@ public class VerticalAdapter<T extends DisplayableItem> extends RecyclerView.Ada
     }
 
     public interface onItemClickListener<T> {
-        void itemClick(T item, String selection);
+        void itemClick(T item);
     }
 }

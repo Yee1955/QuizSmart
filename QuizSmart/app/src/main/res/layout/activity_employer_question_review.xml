@@ -32,27 +32,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="110dp"
         android:layout_alignParentBottom="true"/>
 
-    <Button
-        android:id="@+id/GmailButton"
+    <LinearLayout
+        android:id="@+id/RegenerateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
+        android:orientation="horizontal"
+        android:background="@drawable/background_linear_white"
         android:padding="15dp"
-        android:paddingStart="100dp"
-        android:paddingEnd="100dp"
-        android:text="Regenerate"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textAllCaps="false"
-        android:elevation="0dp"
-        android:drawableLeft="@raw/ic_regenerate"
         android:layout_marginBottom="80dp"
         android:layout_alignParentBottom="true"
-        android:fontFamily="@font/pt_sans_bold"
-        style="?android:attr/borderlessButtonStyle" />
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/RegenerateIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@raw/ic_regenerate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Regenerate"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/pt_sans_bold"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/PublishButton"

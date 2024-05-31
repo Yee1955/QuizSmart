@@ -30,14 +30,21 @@ public class ExtensionMethod {
         toast.show();
     }
 
-    public static Dialog showCustomDialog(Context context) {
+    public static Dialog showCustomDialog(Context context, String text, int layoutResId, int loadingIconId, int textViewId) {
         Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.loading_custom);
+        dialog.setContentView(layoutResId);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
-        dialog.setCancelable(false);
         dialog.show();
-        dialog.findViewById(R.id.LoadingIcon).startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_360));
+
+        // Start rotation animation
+        dialog.findViewById(loadingIconId).startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_360));
+
+        // Set the text of the ProgressTextView
+        TextView progressTextView = dialog.findViewById(textViewId);
+        progressTextView.setText(text);
+
         return dialog;
     }
+
 }

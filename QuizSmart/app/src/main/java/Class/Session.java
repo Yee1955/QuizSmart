@@ -1,23 +1,60 @@
 package Class;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Session implements Serializable{
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import Enumerable.*;
+
+public class Session implements Serializable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("employerId")
     private int employerId;
+
+    @SerializedName("sessionCode")
     private String sessionCode;
+
+    @SerializedName("jobPosition")
     private String jobPosition;
+
+    @SerializedName("jobRequirement")
     private String jobRequirement;
+
+    @SerializedName("jobResponsibilities")
     private String jobResponsibilities;
+
+    @SerializedName("companyCulture")
     private String companyCulture;
-    private String status;
+
+    @SerializedName("status")
+    private SessionStatus status;
+
+    @SerializedName("questionString")
     private String questionString;
+
+    public Session(int employerId, String jobPosition, String jobRequirement, String jobResponsibilities, String companyCulture, String questionString) {
+        this.employerId = employerId;
+        this.sessionCode = "";
+        this.jobPosition = jobPosition;
+        this.jobRequirement = jobRequirement;
+        this.jobResponsibilities = jobResponsibilities;
+        this.companyCulture = companyCulture;
+        this.status = SessionStatus.Unspecified;
+        this.questionString = questionString;
+    }
 
     // Getters
     public int getId() {
         return id;
     }
-
     public int getEmployerId() {
         return employerId;
     }
@@ -42,7 +79,7 @@ public class Session implements Serializable{
         return companyCulture;
     }
 
-    public String getStatus() {
+    public SessionStatus getStatus() {
         return status;
     }
 
@@ -79,12 +116,13 @@ public class Session implements Serializable{
         this.companyCulture = companyCulture;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(SessionStatus status) {
         this.status = status;
     }
 
     public void setQuestionString(String questionString) {
         this.questionString = questionString;
     }
+
 }
 

@@ -22,7 +22,7 @@ public class Employee implements Serializable {
         return email;
     }
 
-    public String getFUllName() {
+    public String getFullName() {
         return fullName;
     }
 

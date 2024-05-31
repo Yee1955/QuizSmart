@@ -27,9 +27,28 @@ public class SessionsController : ControllerBase
         return Session != null  ? Ok(Session) : NotFound();
     }
 
-    [HttpPost()]
-    public IActionResult AddSession(Session newSession)
+    [HttpGet("{id}/employee-session")]
+    public IActionResult GetEmployeeSessionsBySessionId(int id)
     {
+        var employeeSessions = _SessionsRepo.GetEmployeeSessionsBySessionId(id);
+        return employeeSessions.Any() ? Ok(employeeSessions) : NotFound();
+    }
+
+    [HttpPost()]
+    public IActionResult AddSession(SessionDTO newSessionDTO)
+    {
+        var newSession = new Session
+        {
+            EmployerId = newSessionDTO.EmployerId,
+            SessionCode = newSessionDTO.SessionCode,
+            JobPosition = newSessionDTO.JobPosition,
+            JobRequirement = newSessionDTO.JobRequirement,
+            JobResponsibilities = newSessionDTO.JobResponsibilities,
+            CompanyCulture = newSessionDTO.CompanyCulture,
+            Status = newSessionDTO.Status,
+            QuestionString = newSessionDTO.QuestionString
+            
+        };
         if (newSession == null) return BadRequest();
             
         var(Session, isInserted) = _SessionsRepo.InsertSession(newSession);

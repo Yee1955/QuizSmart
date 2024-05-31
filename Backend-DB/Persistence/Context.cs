@@ -131,7 +131,6 @@ namespace Backend_DB.Persistence
                 entity.ToTable("session");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
                     .HasColumnName("id")
                     .UseIdentityAlwaysColumn();
 
@@ -154,7 +153,7 @@ namespace Backend_DB.Persistence
                     .HasColumnName("job_responsibilities");
 
                 entity.Property(e => e.QuestionString)
-                    .HasMaxLength(1000)
+                    .HasMaxLength(100000)
                     .HasColumnName("question_string");
 
                 entity.Property(e => e.SessionCode)
@@ -162,12 +161,12 @@ namespace Backend_DB.Persistence
                     .HasColumnName("session_code");
 
                 entity.Property(e => e.Status)
-                    .HasMaxLength(10)
+                    .HasMaxLength(100)
                     .HasColumnName("status");
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Session)
-                    .HasForeignKey<Session>(d => d.Id)
+                entity.HasOne(d => d.Employer)
+                    .WithMany(p => p.Sessions)
+                    .HasForeignKey(d => d.EmployerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_employer");
             });

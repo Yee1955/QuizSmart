@@ -37,27 +37,6 @@ public class EmployersController : ControllerBase
         return _EmployersRepo.GetEmployerSession(id);
     }
 
-    [HttpGet("{id}/employees")]
-    public IActionResult GetEmployeesByEmployer(int id)
-    {
-        var sessions = _EmployersRepo.GetEmployerSession(id);
-        var employeeIds = sessions.SelectMany(s => s.EmployeeSessions)
-                                .Select(es => es.EmployeeId)
-                                .Distinct();
-
-        List<Employee> employees = new List<Employee>();
-        foreach (var employeeId in employeeIds)
-        {
-            var employee = _EmployeesRepo.GetEmployee(employeeId);
-            if (employee != null)
-            {
-                employees.Add(employee);
-            }
-        }
-
-        return Ok(employees);
-    }
-
     [HttpPost()]
     public IActionResult AddEmployer(Employer newEmployer)
     {

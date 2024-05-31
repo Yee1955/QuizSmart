@@ -18,6 +18,7 @@ import com.example.quizsmart.R;
 import java.io.Serializable;
 import java.security.cert.Extension;
 import java.util.List;
+import java.util.StringJoiner;
 
 import HttpModel.*;
 import API.*;
@@ -30,16 +31,18 @@ public class InformationActivity extends AppCompatActivity {
     EditText JobTitleET, JobRequirementET, JobResponsibilitiesET, CompanyCultureET;
     ImageButton BackBTN;
     Button GenerateBTN;
+    Session Session;
     Employer Employer;
-    List<QuizResponse> QuizList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_information);
+        Session = (Session) getIntent().getSerializableExtra("session");
         Employer = (Employer) getIntent().getSerializableExtra("employer");
 
         initializeView();
         setupTextWatchers();
+        setupEditText();
         setupButton();
     }
 
@@ -106,6 +109,7 @@ public class InformationActivity extends AppCompatActivity {
                 String JobRequirement = JobRequirementET.getText().toString().trim();
                 String JobResponsibilities = JobResponsibilitiesET.getText().toString().trim();
                 String CompanyCulture = CompanyCultureET.getText().toString().trim();
+                Session = new Session(Employer.getId(), JobTitle, JobRequirement, JobResponsibilities, CompanyCulture, null);
                 setupQuiz(JobTitle, JobRequirement, JobResponsibilities, CompanyCulture);
             }
         });
@@ -114,18 +118,28 @@ public class InformationActivity extends AppCompatActivity {
     private void setupQuiz(String title, String requirements, String responsibilities, String culture) {
         ApiService apiService = ApiClient.getApiService("LLM");
         Call<List<QuizResponse>> call = apiService.getQuestions(title, requirements, responsibilities, culture);
-        Dialog dialog = ExtensionMethod.showCustomDialog(this);
+        Dialog dialog = ExtensionMethod.showCustomDialog(this, "Generating", R.layout.loading_custom, R.id.LoadingIcon, R.id.ProgressTextView);
         call.enqueue(new Callback<List<QuizResponse>>() {
             @Override
             public void onResponse(Call<List<QuizResponse>> call, Response<List<QuizResponse>> response) {
                 dialog.dismiss();
                 if (response.isSuccessful()) {
-                    QuizList = response.body();
+                    List<QuizResponse> QuizList = response.body();
                     Log.d("LLM_CALL", "Successful: " + QuizList.size() + " questions generated");
+
                     if (QuizList.size() == 10) {
+                        // Convert quiz list to string
+                        StringJoiner joiner = new StringJoiner("---");
+                        for (QuizResponse quiz : QuizList) {
+                            joiner.add(quiz.toString());
+                        }
+                        String questionString = joiner.toString();
+                        Session.setQuestionString(questionString);
+
+                        // Pass object and start the next activity
                         Intent intent = new Intent(InformationActivity.this, EmployerActivity.QuestionReviewActivity.class);
+                        intent.putExtra("session",  Session);
                         intent.putExtra("employer", Employer);
-                        intent.putExtra("quizList", (Serializable) QuizList);
                         startActivity(intent);
                     } else {
                         ExtensionMethod.showCustomToast(QuizList.get(0).getQuestion(), InformationActivity.this);
@@ -141,5 +155,39 @@ public class InformationActivity extends AppCompatActivity {
                 Log.e("LLM_CALL", "Failure: " + t.getMessage());
             }
         });
+    }
+
+    private void setupEditText() {
+        if (Session != null) {
+            JobTitleET.setText(Session.getJobPosition());
+            JobRequirementET.setText(Session.getJobRequirement());
+            JobResponsibilitiesET.setText(Session.getJobResponsibilities());
+            CompanyCultureET.setText(Session.getCompanyCulture());
+            }
+        else {
+            Session = new Session(Employer.getId(), null, null, null, null, null);
+            Session.setJobPosition("Software Engineer");
+            Session.setJobRequirement("* Bachelor's degree in Computer Science, Engineering, or a related field.\n" +
+                    "* Proficiency in programming languages such as Java, Python, or C++.\n" +
+                    "* Experience with web development frameworks like React, Angular, or Django.\n" +
+                    "* Strong understanding of algorithms, data structures, and software design principles.\n" +
+                    "* Excellent problem-solving skills and attention to detail.\n" +
+                    "* Ability to work collaboratively in a team environment and communicate effectively.");
+            Session.setJobResponsibilities("* Design, develop, and maintain scalable software applications.\n" +
+                    "* Collaborate with cross-functional teams to gather requirements and define project scope.\n" +
+                    "* Write clean, efficient, and well-documented code.\n" +
+                    "* Participate in code reviews and provide constructive feedback to peers.\n" +
+                    "* Troubleshoot and debug software issues to ensure optimal performance.\n" +
+                    "* Stay updated with the latest industry trends and technologies to continuously improve development processes.");
+            Session.setCompanyCulture("* We foster a culture of innovation and continuous learning, encouraging employees to explore new ideas and technologies.\n" +
+                    "* Our team values collaboration and inclusivity, creating an environment where everyone’s voice is heard and respected.\n" +
+                    "* We prioritize work-life balance and offer flexible working hours to accommodate personal and professional needs.\n" +
+                    "* Employee well-being is at the core of our values, with access to wellness programs and resources.\n" +
+                    "* We celebrate diversity and strive to create an equitable workplace where all employees can thrive and grow.\n");
+            JobTitleET.setText(Session.getJobPosition());
+            JobRequirementET.setText(Session.getJobRequirement());
+            JobResponsibilitiesET.setText(Session.getJobResponsibilities());
+            CompanyCultureET.setText(Session.getCompanyCulture());
+        }
     }
 }

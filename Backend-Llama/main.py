@@ -63,7 +63,7 @@ def generate_questions2(job_title, job_requirements, job_responsibilities, compa
         f"Company Culture: {company_culture}\n"
         f"[/INST]"
     )
-
+    print()
     response = model_adapter.complete(query=query, max_generated_token_count=500).generated_output
     return response
 
@@ -71,7 +71,8 @@ def process_questions(respoonse_text):
     questions = []
     pattern = re.compile(r'QUESTION: (.*?)\nOPTION A: (.*?)\nOPTION B: (.*?)\nOPTION C: (.*?)\n',re.DOTALL)
     matches = pattern.findall(respoonse_text)
-    if matches:
+    print("LEEEEEEEN", len(matches))
+    if len(matches) == 10:
         for match in matches:
             question = match[0].strip()
             options = match[1].strip(), match[2].strip(), match[3].strip()
@@ -176,6 +177,8 @@ def get_quiz():
     processed_quiz = process_questions(quiz)
     
     # Print the processed quiz data
+    print("Quiz: ", quiz)
+    print("Proccessed: ", processed_quiz)
     return jsonify(process_questions(quiz)), 200
 
 if __name__ == '__main__':

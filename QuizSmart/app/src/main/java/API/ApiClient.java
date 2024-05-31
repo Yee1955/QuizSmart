@@ -18,13 +18,20 @@ public class ApiClient {
     private static Retrofit retrofit;
 
     public static Retrofit getDBRetrofitInstance() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .readTimeout(10, java.util.concurrent.TimeUnit.MINUTES)
+                .addInterceptor(logging)
+                .build();
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LoginResponse.class, new UserDeserializer())
                 .create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(DB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(new OkHttpClient.Builder().readTimeout(10, java.util.concurrent.TimeUnit.MINUTES).build()) // this will set the read timeout for 10mins (IMPORTANT: If not your request will exceed the default read timeout)
+                .client(client)
                 .build();
         return retrofit;
     }

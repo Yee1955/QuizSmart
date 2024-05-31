@@ -10,7 +10,7 @@ namespace Backend_DB.Models
         public string CompanyName { get; set; } = null!;
         public string Password { get; set; } = null!;
 
-        public virtual Session Session { get; set; } = null!;
+        public virtual ICollection<Session> Sessions { get; set; }
         public Employer()
         {
                 

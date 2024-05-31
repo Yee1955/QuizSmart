@@ -51,41 +51,25 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/AverageScore"
+                    android:id="@+id/JobPosition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Average Score"
+                    android:text="Job Position"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
                     android:gravity="center" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/JobPositionTextView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/ScoreTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="3.56"
-                        android:textColor="@color/black"
-                        android:textSize="40dp"
-                        android:fontFamily="@font/pt_sans_bold"
-                        android:gravity="center" />
-
-                    <TextView
-                        android:id="@+id/MaxScore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="/5"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:gravity="center" />
-
-                </LinearLayout>
+                    android:text="Internship Program"
+                    android:textColor="@color/black"
+                    android:textSize="24dp"
+                    android:fontFamily="@font/pt_sans_bold"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -102,22 +86,22 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/TotalSessions"
+                    android:id="@+id/SessionCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Total Sessions"
+                    android:text="Session Code"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
                     android:gravity="center" />
 
                 <TextView
-                    android:id="@+id/TotalSessionsTextView"
+                    android:id="@+id/SessionCodeTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text="#F1JHD"
                     android:textColor="@color/black"
-                    android:textSize="40dp"
+                    android:textSize="30dp"
                     android:fontFamily="@font/pt_sans_bold"
                     android:layout_marginTop="20dp"
                     android:gravity="center" />

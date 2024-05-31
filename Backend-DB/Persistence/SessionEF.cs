@@ -17,12 +17,29 @@ namespace Backend_DB.Persistence
             return context.Sessions.ToList();
         }
 
+        public IEnumerable<EmployeeSession> GetEmployeeSessionsBySessionId(int sessionId)
+        {
+            using var context = new Context();
+            return context.EmployeeSessions
+                .Where(es => es.SessionId == sessionId)
+                .ToList();
+        }
+
         public (Session?, bool) InsertSession(Session Session)
         {
             using var context = new Context();
-            // Check for duplicate email
-            var duplicateSession = context.Sessions.SingleOrDefault(r => r.SessionCode == Session.SessionCode);
-            if (duplicateSession != null) return (duplicateSession, false);
+
+            // Ensure the session code is unique among sessions with the status "Started"
+            bool isUniqueCode;
+            string sessionCode;
+
+            do
+            {
+                sessionCode = GenerateSessionCode();
+                isUniqueCode = !context.Sessions.Any(s => s.SessionCode == sessionCode && s.Status == "Started");
+            } while (!isUniqueCode);
+
+            Session.SessionCode = sessionCode;
 
             // Insert Session
             try
@@ -31,8 +48,9 @@ namespace Backend_DB.Persistence
                 context.SaveChanges();  // Update the changes to object
                 return (Session, true);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Exception: {ex.Message}");
                 return (null, false);
             }
         }
@@ -50,7 +68,6 @@ namespace Backend_DB.Persistence
                 context.Sessions.Where(r => r.Id == updatedSession.Id)
                 .ExecuteUpdate(setter => setter
                     .SetProperty(r => r.EmployerId, updatedSession.EmployerId)
-                    .SetProperty(r => r.SessionCode, updatedSession.SessionCode)
                     .SetProperty(r => r.JobPosition, updatedSession.JobPosition)
                     .SetProperty(r => r.JobRequirement, updatedSession.JobRequirement)
                     .SetProperty(r => r.JobResponsibilities, updatedSession.JobResponsibilities)
@@ -81,5 +98,19 @@ namespace Backend_DB.Persistence
                 return null;
             }
         }
+        
+        private string GenerateSessionCode()
+        {
+            // Generate a session code in the format '#F1JHD'
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var code = new char[5];
+            for (int i = 0; i < code.Length; i++)
+            {
+                code[i] = chars[random.Next(chars.Length)];
+            }
+            return $"#{new string(code)}";
+        }
+
     }
 }

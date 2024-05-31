@@ -15,7 +15,7 @@ namespace Backend_DB.Models
         public string Status { get; set; } = null!;
         public string? QuestionString { get; set; }
 
-        public virtual Employer IdNavigation { get; set; } = null!;
+        public virtual Employer Employer { get; set; } = null!;
         public virtual ICollection<EmployeeSession> EmployeeSessions { get; set; }
         public Session()
         {
