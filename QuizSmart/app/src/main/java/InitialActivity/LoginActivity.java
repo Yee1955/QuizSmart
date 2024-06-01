@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
         GmailBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ExtensionMethod.showCustomToast("Upcoming...", LoginActivity.this);
             }
         });
 

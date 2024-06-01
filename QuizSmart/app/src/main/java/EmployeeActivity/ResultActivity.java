@@ -80,6 +80,7 @@ public class ResultActivity extends AppCompatActivity {
         }
         if (EmployeeSession != null) {
             if (EmployeeSession.getSummary() != null) {
+                System.out.println(EmployeeSession.getSummary());
                 System.out.println(EmployeeSession.getScoreAlignment());
                 ScoreTV.setText(String.format("%.2f", EmployeeSession.getAverageScore()));
                 SummaryTV.setText(EmployeeSession.getSummary());
@@ -144,11 +145,11 @@ public class ResultActivity extends AppCompatActivity {
                 dialog.dismiss();
                 if (response.isSuccessful()) {
                     Log.d("LLM_CALL", "Successful: Summary (" + response.body().getSummary() + ")");
-                    EmployeeSession.setScoreAlignment(response.body().getScores().get("AL"));
-                    EmployeeSession.setScoreCommunication(response.body().getScores().get("CS"));
-                    EmployeeSession.setScoreTeamFit(response.body().getScores().get("CTF"));
-                    EmployeeSession.setScoreInnovation(response.body().getScores().get("IC"));
-                    EmployeeSession.setScoreProblemSolving(response.body().getScores().get("PB"));
+                    EmployeeSession.setScoreAlignment(response.body().getScores().get("Alignment with Job Requirements"));
+                    EmployeeSession.setScoreCommunication(response.body().getScores().get("Communication Skills"));
+                    EmployeeSession.setScoreTeamFit(response.body().getScores().get("Cultural and Team Fit"));
+                    EmployeeSession.setScoreInnovation(response.body().getScores().get("Innovation and Creativity"));
+                    EmployeeSession.setScoreProblemSolving(response.body().getScores().get("Problem Solving and Critical Thinking"));
                     EmployeeSession.setSummary(response.body().getSummary());
                     updateEmployeeSession();
                     setupTextView();

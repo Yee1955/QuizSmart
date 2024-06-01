@@ -22,6 +22,8 @@ public interface ApiService {
     // ------------------ Database backend route (Employee) ------------------
     @GET("api/employee/{id}")
     Call<Employee> getEmployee(@Path("id") int employeeId);
+    @POST("api/employee")
+    Call<Employee> addEmployee(@Body Employee employee);
     @GET("api/employee/{id}/employee-session")
     Call<List<EmployeeSession>> getEmployeeSessionByEmployeeId(@Path("id") int employeeId);
 
@@ -30,6 +32,8 @@ public interface ApiService {
     // ------------------ Database backend route (Employer) ------------------
     @GET("api/employer/{id}")
     Call<Employer> getEmployer(@Path("id") int employerId);
+    @POST("api/employer")
+    Call<Employer> addEmployer(@Body Employer employer);
     @GET("api/employer/{id}/sessions")
     Call<List<Session>> getEmployerSessions(@Path("id") int employerId);
     @GET("api/employer/{id}/employees")

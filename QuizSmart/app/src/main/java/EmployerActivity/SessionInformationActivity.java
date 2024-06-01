@@ -123,7 +123,7 @@ public class SessionInformationActivity extends AppCompatActivity {
 
         // Get "EmployeeSession" by session id
         ApiService apiService = ApiClient.getApiService("DB");
-        Call<List<EmployeeSession>> call = apiService.getEmployeeSessionBySessionId(1);
+        Call<List<EmployeeSession>> call = apiService.getEmployeeSessionBySessionId(Session.getId());
         call.enqueue(new Callback<List<EmployeeSession>>() {
             @Override
             public void onResponse(Call<List<EmployeeSession>> call, Response<List<EmployeeSession>> response) {

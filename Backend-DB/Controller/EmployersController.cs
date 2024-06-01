@@ -38,8 +38,14 @@ public class EmployersController : ControllerBase
     }
 
     [HttpPost()]
-    public IActionResult AddEmployer(Employer newEmployer)
+    public IActionResult AddEmployer(EmployerDTO newEmployerDTO)
     {
+        var newEmployer = new Employer
+        {
+            Email = newEmployerDTO.Email,
+            CompanyName = newEmployerDTO.CompanyName,
+            Password = newEmployerDTO.Password,
+        };
         if (newEmployer == null) return BadRequest();
             
         var(Employer, isInserted) = _EmployersRepo.InsertEmployer(newEmployer);
@@ -61,8 +67,15 @@ public class EmployersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateEmployer(int id, Employer updatedEmployer)
+    public IActionResult UpdateEmployer(int id, EmployerDTO updatedEmployerDTO)
     {
+        var updatedEmployer = new Employer
+        {
+            Id = id,
+            Email = updatedEmployerDTO.Email,
+            CompanyName = updatedEmployerDTO.CompanyName,
+            Password = updatedEmployerDTO.Password,
+        };
         updatedEmployer.Id = id;
         Employer? returnedEmployer =  _EmployersRepo.UpdateEmployer(updatedEmployer);
         if (returnedEmployer == null) return NotFound();

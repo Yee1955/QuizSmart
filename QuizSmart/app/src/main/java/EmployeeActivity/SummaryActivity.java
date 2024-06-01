@@ -100,6 +100,7 @@ public class SummaryActivity extends AppCompatActivity {
     }
 
     private void setupTextView() {
+        YourNameTV.setText(Employee.getFullName());
         ApiService apiService = ApiClient.getApiService("DB");
         Call<List<EmployeeSession>> call = apiService.getEmployeeSessionByEmployeeId(Employee.getId());
         call.enqueue(new Callback<List<EmployeeSession>>() {
