@@ -30,6 +30,7 @@ CREATE TABLE session (
     job_responsibilities VARCHAR(1000) NOT NULL,
     company_culture VARCHAR(1000) NOT NULL,
     status VARCHAR(100) NOT NULL,
+    date TIMESTAMP NOT NULL,
     question_string VARCHAR(100000) NULL,
     CONSTRAINT fk_employer
       FOREIGN KEY(employer_id) 
@@ -60,7 +61,7 @@ CREATE TABLE employee_session (
 );
 
 INSERT INTO employee (email, full_name, password)
-VALUES ('xxx@example.com', 'Alice Chong', 12345);
+VALUES ('acom', 'Alice Chong', 12345);
 INSERT INTO employer (email, company_name, password)
 VALUES ('x.com', 'SpaceX', 123);
 -- Inserting a dummy employee session

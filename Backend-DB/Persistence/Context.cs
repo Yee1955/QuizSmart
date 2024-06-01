@@ -138,6 +138,10 @@ namespace Backend_DB.Persistence
                     .HasMaxLength(1000)
                     .HasColumnName("company_culture");
 
+                entity.Property(e => e.Date)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("date");
+
                 entity.Property(e => e.EmployerId).HasColumnName("employer_id");
 
                 entity.Property(e => e.JobPosition)

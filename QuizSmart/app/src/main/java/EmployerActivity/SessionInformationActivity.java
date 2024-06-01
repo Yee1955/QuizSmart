@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class SessionInformationActivity extends AppCompatActivity {
     ImageButton BackBTN;
-    TextView JobPositionTV, SessionCodeTV;
+    TextView JobPositionTV, SessionCodeTV, TotalTV;
     RecyclerView CandidatesRV;
     Button EndBTN;
     Session Session;
@@ -53,10 +53,12 @@ public class SessionInformationActivity extends AppCompatActivity {
         BackBTN = findViewById(R.id.BackButton);
         JobPositionTV = findViewById(R.id.JobPositionTextView);
         SessionCodeTV = findViewById(R.id.SessionCodeTextView);
+        TotalTV = findViewById(R.id.TotalTextView);
         CandidatesRV = findViewById(R.id.CandidatesRecyclerView);
         EndBTN = findViewById(R.id.EndButton);
 
         EndBTN.setEnabled(Session.getStatus().equals(SessionStatus.Started));
+        TotalTV.setText("Total: " + EmployeeSessions.size());
     }
 
     private void setupTextView() {
@@ -78,7 +80,7 @@ public class SessionInformationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Session.setStatus(SessionStatus.Ended);
                 ApiService apiService = ApiClient.getApiService("DB");
-                Call<Session> call = apiService.updateSession(Session.getId());
+                Call<Session> call = apiService.updateSession(Session.getId(), Session);
                 call.enqueue(new Callback<Session>() {
                     @Override
                     public void onResponse(Call<Session> call, Response<Session> response) {
@@ -102,12 +104,26 @@ public class SessionInformationActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
         CandidatesRV.setLayoutManager(new LinearLayoutManager(this));
-        VerticalAdapter<EmployeeSession> reviewAdapter = new VerticalAdapter<>(EmployeeSessions, null);
+        VerticalAdapter<EmployeeSession> reviewAdapter = new VerticalAdapter<>(EmployeeSessions, new VerticalAdapter.onItemClickListener<EmployeeSession>() {
+            @Override
+            public void itemClick2(EmployeeSession item) {
+
+            }
+
+            @Override
+            public void itemClick1(EmployeeSession item) {
+                Intent intent = new Intent(SessionInformationActivity.this, EmployerActivity.ResultActivity.class);
+                intent.putExtra("session", Session);
+                intent.putExtra("employer", Employer);
+                intent.putExtra("employeeSession", item);
+                startActivity(intent);
+            }
+        });
         CandidatesRV.setAdapter(reviewAdapter);
 
         // Get "EmployeeSession" by session id
         ApiService apiService = ApiClient.getApiService("DB");
-        Call<List<EmployeeSession>> call = apiService.getEmployeeSessionBySessionId(Session.getId());
+        Call<List<EmployeeSession>> call = apiService.getEmployeeSessionBySessionId(1);
         call.enqueue(new Callback<List<EmployeeSession>>() {
             @Override
             public void onResponse(Call<List<EmployeeSession>> call, Response<List<EmployeeSession>> response) {
@@ -115,6 +131,7 @@ public class SessionInformationActivity extends AppCompatActivity {
                     Log.d("DB_CALL", "Successful: " + response.body().size() + " employee sessions got");
                     EmployeeSessions.clear();
                     EmployeeSessions.addAll(response.body());
+                    TotalTV.setText("Total: " + EmployeeSessions.size());
                     reviewAdapter.notifyDataSetChanged();
                 } else {
                     Log.e("DB_CALL", "Error with status code: " + response.code() + " and body: " + response.errorBody());

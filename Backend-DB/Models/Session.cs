@@ -13,6 +13,7 @@ namespace Backend_DB.Models
         public string JobResponsibilities { get; set; } = null!;
         public string CompanyCulture { get; set; } = null!;
         public string Status { get; set; } = null!;
+        public DateTime Date { get; set; }
         public string? QuestionString { get; set; }
 
         public virtual Employer Employer { get; set; } = null!;
@@ -22,7 +23,7 @@ namespace Backend_DB.Models
                 
         }
         
-        public Session(int id, int employerId, string sessionCode, string jobPosition, string jobRequirement, string jobResponsibilities, string companyCulture, string status,  string? questionString)
+        public Session(int id, int employerId, string sessionCode, string jobPosition, string jobRequirement, string jobResponsibilities, string companyCulture, string status, DateTime date,  string? questionString)
         {
             Id = id;
             EmployerId = employerId;
@@ -32,6 +33,7 @@ namespace Backend_DB.Models
             JobResponsibilities = jobResponsibilities;
             CompanyCulture = companyCulture;
             Status = status;
+            Date = date;
             QuestionString = questionString;
         }
     }

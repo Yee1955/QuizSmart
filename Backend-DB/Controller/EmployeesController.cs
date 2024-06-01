@@ -9,9 +9,11 @@ namespace Backend_DB.Controllers;
 public class EmployeesController : ControllerBase
 {
     private readonly EmployeeEF _EmployeesRepo;
+    private readonly EmployeeSessionEF _EmployeeSessionRepo;
     public EmployeesController()
     {
         _EmployeesRepo = new EmployeeEF();
+        _EmployeeSessionRepo = new EmployeeSessionEF();
     }
 
     [HttpGet("")]
@@ -25,6 +27,18 @@ public class EmployeesController : ControllerBase
     {
         var Employee = _EmployeesRepo.GetEmployee(id);
         return Employee != null  ? Ok(Employee) : NotFound();
+    }
+
+    [HttpGet("{id}/employee-session")]
+    public IActionResult GetEmployeeSessionsByEmployeeId(int id)
+    {
+        var allEmployeeSessions = _EmployeeSessionRepo.GetEmployeeSessions();
+        var employeeSessions = allEmployeeSessions.Where(es => es.EmployeeId == id).ToList();
+        if (employeeSessions.Count == 0)
+        {
+            return NotFound($"No employee sessions found for session ID: {id}");
+        }
+        return Ok(employeeSessions);
     }
 
     [HttpPost()]

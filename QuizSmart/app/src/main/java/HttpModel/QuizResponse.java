@@ -3,10 +3,12 @@ package HttpModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import Adapter.DisplayableItem;
 import Class.*;
+import Enumerable.SessionStatus;
 
 public class QuizResponse implements Serializable, DisplayableItem {
     @SerializedName("question")
@@ -31,6 +33,31 @@ public class QuizResponse implements Serializable, DisplayableItem {
     @Override
     public float getAverageScore() {
         return 0;
+    }
+
+    @Override
+    public String getJobPosition() {
+        return null;
+    }
+
+    @Override
+    public LocalDateTime getDate() {
+        return null;
+    }
+
+    @Override
+    public SessionStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return null;
     }
 
     public List<String> getOptions() {

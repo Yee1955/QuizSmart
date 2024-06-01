@@ -17,14 +17,6 @@ namespace Backend_DB.Persistence
             return context.Sessions.ToList();
         }
 
-        public IEnumerable<EmployeeSession> GetEmployeeSessionsBySessionId(int sessionId)
-        {
-            using var context = new Context();
-            return context.EmployeeSessions
-                .Where(es => es.SessionId == sessionId)
-                .ToList();
-        }
-
         public (Session?, bool) InsertSession(Session Session)
         {
             using var context = new Context();
@@ -104,12 +96,12 @@ namespace Backend_DB.Persistence
             // Generate a session code in the format '#F1JHD'
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
-            var code = new char[5];
+            var code = new char[6];
             for (int i = 0; i < code.Length; i++)
             {
                 code[i] = chars[random.Next(chars.Length)];
             }
-            return $"#{new string(code)}";
+            return $"{new string(code)}";
         }
 
     }

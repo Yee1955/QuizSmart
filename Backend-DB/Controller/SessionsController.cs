@@ -9,9 +9,11 @@ namespace Backend_DB.Controllers;
 public class SessionsController : ControllerBase
 {
     private readonly SessionEF _SessionsRepo;
+    private readonly EmployeeSessionEF _EmployeeSessionRepo;
     public SessionsController()
     {
         _SessionsRepo = new SessionEF();
+        _EmployeeSessionRepo = new EmployeeSessionEF();
     }
 
     [HttpGet("")]
@@ -30,8 +32,36 @@ public class SessionsController : ControllerBase
     [HttpGet("{id}/employee-session")]
     public IActionResult GetEmployeeSessionsBySessionId(int id)
     {
-        var employeeSessions = _SessionsRepo.GetEmployeeSessionsBySessionId(id);
-        return employeeSessions.Any() ? Ok(employeeSessions) : NotFound();
+        var allEmployeeSessions = _EmployeeSessionRepo.GetEmployeeSessions();
+        var employeeSessions = allEmployeeSessions.Where(es => es.SessionId == id).ToList();
+        if (employeeSessions.Count == 0)
+        {
+            return NotFound($"No employee sessions found for session ID: {id}");
+        }
+        return Ok(employeeSessions);
+    }
+
+    [HttpGet("{id}/completed")]
+    public IActionResult GetNumOfCompleted(int id)
+    {
+        var allEmployeeSessions = _EmployeeSessionRepo.GetEmployeeSessions();
+        var employeeSessions = allEmployeeSessions.Where(es => es.SessionId == id).ToList();
+        var completedSessions = employeeSessions.Where(es => es.Status == "Completed");
+
+        return Ok(completedSessions.Count());
+    }
+
+    [HttpGet("session-code/{sessionCode}")]
+    public IActionResult GetSessionByCode(string sessionCode)
+    {
+        Console.WriteLine("Received: " + sessionCode);
+        var sessions = _SessionsRepo.GetSessions();
+        var session = sessions.FirstOrDefault(s => s.SessionCode.Equals(sessionCode) && s.Status.Equals("Started"));
+        if (session == null)
+        {
+            return NotFound("Session not found with the provided code.");
+        }
+        return Ok(session);
     }
 
     [HttpPost()]
@@ -46,6 +76,7 @@ public class SessionsController : ControllerBase
             JobResponsibilities = newSessionDTO.JobResponsibilities,
             CompanyCulture = newSessionDTO.CompanyCulture,
             Status = newSessionDTO.Status,
+            Date = newSessionDTO.Date,
             QuestionString = newSessionDTO.QuestionString
             
         };
@@ -70,8 +101,21 @@ public class SessionsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateSession(int id, Session updatedSession)
+    public IActionResult UpdateSession(int id, SessionDTO updatedSessionDTO)
     {
+        var updatedSession = new Session
+        {
+            EmployerId = updatedSessionDTO.EmployerId,
+            SessionCode = updatedSessionDTO.SessionCode,
+            JobPosition = updatedSessionDTO.JobPosition,
+            JobRequirement = updatedSessionDTO.JobRequirement,
+            JobResponsibilities = updatedSessionDTO.JobResponsibilities,
+            CompanyCulture = updatedSessionDTO.CompanyCulture,
+            Status = updatedSessionDTO.Status,
+            Date = updatedSessionDTO.Date,
+            QuestionString = updatedSessionDTO.QuestionString
+            
+        };
         updatedSession.Id = id;
         Session? returnedSession =  _SessionsRepo.UpdateSession(updatedSession);
         if (returnedSession == null) return NotFound();

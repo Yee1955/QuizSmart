@@ -35,11 +35,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/DetailsButton"
         android:layout_width="match_parent"
         android:layout_height="68.15dp"
         android:orientation="horizontal"
         android:background="@drawable/background_grey"
         android:layout_marginTop="5dp"
+        android:clickable="true"
         android:gravity="center_vertical">
 
         <TextView

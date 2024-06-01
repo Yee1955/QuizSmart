@@ -18,14 +18,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView2"
+        <com.ultramegasoft.radarchart.RadarView
+            android:id="@+id/radar"
             android:layout_width="match_parent"
-            android:layout_height="333dp"
-            app:srcCompat="@android:drawable/btn_star_big_off"
-            android:scaleType="fitCenter"/>
+            android:layout_height="300dp"
+            app:circleColor="@color/employee_dark_blue"
+            app:selectedColor="@color/employee_dark_blue"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/LegendTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pt_sans"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1.2"
+            android:text="AL: Alignment with Job Position\nPB: Problem-Solving and Critical Thinking\nCS: Communication Skills\nIC: Innovation and Creativity\nCTF: Cultural and Team Fit"
+            android:textColor="@color/employee_dark_blue"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/Summary"
@@ -49,7 +61,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/pt_sans"
             android:gravity="center_vertical"
-            android:lineSpacingMultiplier="1.5"
+            android:lineSpacingMultiplier="1.2"
             android:text="Summarize key strengths and areas for improvement, helping candidates understand how they might develop to fit similar roles better."
             android:textColor="@color/black"
             android:textSize="16dp" />

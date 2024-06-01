@@ -61,11 +61,11 @@
                     android:id="@+id/ScoreTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3.56"
-                    android:textColor="@color/black"
-                    android:textSize="40dp"
                     android:fontFamily="@font/pt_sans_bold"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="0.00"
+                    android:textColor="@color/black"
+                    android:textSize="40dp" />
 
                 <TextView
                     android:id="@+id/MaxScore"
@@ -114,8 +114,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employee"
-            android:progress="503"
-            android:max="1000"
+            android:progress="0"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -136,8 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employee"
-            android:progress="503"
-            android:max="1000"
+            android:progress="0"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -158,8 +158,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employee"
-            android:progress="503"
-            android:max="1000"
+            android:progress="0"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -175,13 +175,13 @@
             android:gravity="center_vertical" />
 
         <ProgressBar
-            android:id="@+id/CulturalProgressBar"
+            android:id="@+id/InnovationProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employee"
-            android:progress="503"
-            android:max="1000"
+            android:progress="0"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -197,13 +197,13 @@
             android:gravity="center_vertical" />
 
         <ProgressBar
-            android:id="@+id/customProgressBar"
+            android:id="@+id/CulturalProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employee"
-            android:progress="503"
-            android:max="1000"
+            android:progress="0"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
 
@@ -227,7 +227,7 @@
             android:id="@+id/SummaryTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Summarize key strengths and areas for improvement, helping candidates understand how they might develop to fit similar roles better."
+            android:text=".............................\n.............................\n............................."
             android:textColor="@color/black"
             android:textSize="15dp"
             android:fontFamily="@font/pt_sans"

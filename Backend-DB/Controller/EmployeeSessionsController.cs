@@ -28,8 +28,23 @@ public class EmployeeSessionsController : ControllerBase
     }
 
     [HttpPost()]
-    public IActionResult AddEmployeeSession(EmployeeSession newEmployeeSession)
+    public IActionResult AddEmployeeSession(EmployeeSessionDTO newEmployeeSessionDTO)
     {
+        var newEmployeeSession = new EmployeeSession
+        {
+            EmployeeId = newEmployeeSessionDTO.EmployeeId,
+            SessionId = newEmployeeSessionDTO.SessionId,
+            Progress = newEmployeeSessionDTO.Progress,
+            Status = newEmployeeSessionDTO.Status,
+            AnswerString = newEmployeeSessionDTO.AnswerString,
+            ScoreAlignment = newEmployeeSessionDTO.ScoreAlignment,
+            ScoreProblemSolving = newEmployeeSessionDTO.ScoreProblemSolving,
+            ScoreCommunication = newEmployeeSessionDTO.ScoreCommunication,
+            ScoreInnovation = newEmployeeSessionDTO.ScoreInnovation,
+            ScoreTeamFit = newEmployeeSessionDTO.ScoreTeamFit,
+            Summary = newEmployeeSessionDTO.Summary
+            
+        };
         if (newEmployeeSession == null) return BadRequest();
             
         var(EmployeeSession, isInserted) = _EmployeeSessionsRepo.InsertEmployeeSession(newEmployeeSession);
@@ -51,9 +66,24 @@ public class EmployeeSessionsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateEmployeeSession(int id, EmployeeSession updatedEmployeeSession)
+    public IActionResult UpdateEmployeeSession(int id, EmployeeSessionDTO updatedEmployeeSessionDTO)
     {
-        updatedEmployeeSession.Id = id;
+        var updatedEmployeeSession = new EmployeeSession
+        {
+            Id = id,
+            EmployeeId = updatedEmployeeSessionDTO.EmployeeId,
+            SessionId = updatedEmployeeSessionDTO.SessionId,
+            Progress = updatedEmployeeSessionDTO.Progress,
+            Status = updatedEmployeeSessionDTO.Status,
+            AnswerString = updatedEmployeeSessionDTO.AnswerString,
+            ScoreAlignment = updatedEmployeeSessionDTO.ScoreAlignment,
+            ScoreProblemSolving = updatedEmployeeSessionDTO.ScoreProblemSolving,
+            ScoreCommunication = updatedEmployeeSessionDTO.ScoreCommunication,
+            ScoreInnovation = updatedEmployeeSessionDTO.ScoreInnovation,
+            ScoreTeamFit = updatedEmployeeSessionDTO.ScoreTeamFit,
+            Summary = updatedEmployeeSessionDTO.Summary
+            
+        };
         EmployeeSession? returnedEmployeeSession =  _EmployeeSessionsRepo.UpdateEmployeeSession(updatedEmployeeSession);
         if (returnedEmployeeSession == null) return NotFound();
         return returnedEmployeeSession.Id == id ? Ok(returnedEmployeeSession) : Conflict(returnedEmployeeSession);

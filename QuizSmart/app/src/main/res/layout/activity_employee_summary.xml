@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="30dp"
-    android:gravity="center_vertical">
+    android:gravity="center_horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="left"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -25,7 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/YourName"
+            android:id="@+id/YourNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pt_sans_bold"
@@ -47,7 +48,7 @@
         android:layout_marginTop="20dp" />
 
     <EditText
-        android:id="@+id/EmailEditText"
+        android:id="@+id/SessionCodeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -77,10 +78,12 @@
         android:gravity="center">
 
         <LinearLayout
+            android:id="@+id/AverageScoreButton"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:orientation="vertical"
             android:background="@drawable/background_grey"
+            android:clickable="true"
             android:gravity="center_horizontal">
 
             <TextView
@@ -128,10 +131,12 @@
             android:layout_weight="1" />
 
         <LinearLayout
+            android:id="@+id/TotalSessionsButton"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:orientation="vertical"
             android:background="@drawable/background_grey"
+            android:clickable="true"
             android:gravity="center_horizontal">
 
             <TextView
@@ -167,17 +172,20 @@
         android:textColor="@color/dark_grey"
         android:textSize="20dp"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         android:gravity="center_vertical" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:visibility="gone"
         android:background="@color/dark_grey" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>

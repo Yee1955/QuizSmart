@@ -5,6 +5,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.time.LocalDateTime;
+
 import HttpModel.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,6 +29,8 @@ public class ApiClient {
                 .build();
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LoginResponse.class, new UserDeserializer())
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
                 .create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(DB_BASE_URL)

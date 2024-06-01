@@ -1,11 +1,12 @@
 package Class;
 
 import java.io.Serializable;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import API.ApiClient;
 import API.ApiService;
 import Adapter.DisplayableItem;
+import Enumerable.SessionStatus;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,7 +16,7 @@ public class EmployeeSession implements Serializable, DisplayableItem {
     private int employeeId;
     private int sessionId;
     private int progress;
-    private String status;
+    private SessionStatus status;
     private String answerString;
     private Float scoreAlignment;
     private Float scoreProblemSolving;
@@ -23,17 +24,17 @@ public class EmployeeSession implements Serializable, DisplayableItem {
     private Float scoreInnovation;
     private Float scoreTeamFit;
     private String summary;
-    private Employee Employee; // Get full name purpose
+    private Employee Employee; // Get async object
+    private Session Session; // Get async object
 
     // No-argument constructor
     public EmployeeSession() {
     }
 
     // Constructor with all fields
-    public EmployeeSession(int id, int employeeId, int sessionId, int progress, String status, String answerString,
+    public EmployeeSession(int employeeId, int sessionId, int progress, SessionStatus status, String answerString,
                            Float scoreAlignment, Float scoreProblemSolving, Float scoreCommunication,
                            Float scoreInnovation, Float scoreTeamFit, String summary) {
-        this.id = id;
         this.employeeId = employeeId;
         this.sessionId = sessionId;
         this.progress = progress;
@@ -50,6 +51,11 @@ public class EmployeeSession implements Serializable, DisplayableItem {
     // Getters and Setters
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return null;
     }
 
     public void setId(int id) {
@@ -80,11 +86,11 @@ public class EmployeeSession implements Serializable, DisplayableItem {
         this.progress = progress;
     }
 
-    public String getStatus() {
+    public SessionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(SessionStatus status) {
         this.status = status;
     }
 
@@ -149,8 +155,24 @@ public class EmployeeSession implements Serializable, DisplayableItem {
         return (scoreAlignment + scoreCommunication + scoreInnovation + scoreProblemSolving + scoreTeamFit) / 5;
     }
 
+    @Override
+    public String getJobPosition() {
+        return null;
+    }
+
+    @Override
+    public LocalDateTime getDate() {
+        return null;
+    }
+
+
     public interface EmployeeCallback {
         void onEmployeeLoaded(Employee employee);
+        void onError(String error);
+    }
+
+    public interface SessionCallback {
+        void onSessionLoaded(Session session);
         void onError(String error);
     }
 
@@ -171,6 +193,27 @@ public class EmployeeSession implements Serializable, DisplayableItem {
 
             @Override
             public void onFailure(Call<Employee> call, Throwable t) {
+                callback.onError("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    public void getSessionAsync(SessionCallback callback) {
+        ApiService apiService = ApiClient.getApiService("DB");
+        Call<Session> call = apiService.getSession(sessionId);
+        call.enqueue(new Callback<Session>() {
+            @Override
+            public void onResponse(Call<Session> call, Response<Session> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Session = response.body();
+                    callback.onSessionLoaded(Session);
+                } else {
+                    callback.onError("Failed to fetch employee or empty response.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Session> call, Throwable t) {
                 callback.onError("Network error: " + t.getMessage());
             }
         });

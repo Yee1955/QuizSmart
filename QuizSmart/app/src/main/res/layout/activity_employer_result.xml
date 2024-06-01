@@ -114,8 +114,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employer"
-            android:progress="503"
-            android:max="1000"
+            android:progress="123"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -136,8 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employer"
-            android:progress="503"
-            android:max="1000"
+            android:progress="215"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -158,8 +158,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employer"
-            android:progress="503"
-            android:max="1000"
+            android:progress="123"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -175,13 +175,13 @@
             android:gravity="center_vertical" />
 
         <ProgressBar
-            android:id="@+id/CulturalProgressBar"
+            android:id="@+id/InnovationProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employer"
-            android:progress="503"
-            android:max="1000"
+            android:progress="403"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -197,13 +197,13 @@
             android:gravity="center_vertical" />
 
         <ProgressBar
-            android:id="@+id/customProgressBar"
+            android:id="@+id/CulturalProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:progressDrawable="@drawable/progress_score_employer"
-            android:progress="503"
-            android:max="1000"
+            android:progress="303"
+            android:max="500"
             android:layout_marginTop="5dp"/>
 
 

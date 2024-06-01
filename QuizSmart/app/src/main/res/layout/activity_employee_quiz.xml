@@ -26,47 +26,47 @@
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
         <View
             android:layout_width="26dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/background_grey" />
 
     </GridLayout>
@@ -118,7 +118,7 @@
             android:layout_marginTop="10dp"/>
 
         <RadioButton
-            android:id="@+id/OptionRadioButton4"
+            android:id="@+id/OptionRadioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_option"
@@ -130,37 +130,22 @@
             android:textColor="@color/dark_grey"
             android:layout_marginTop="10dp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/OptionRadioButton4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:padding="20dp"
+            android:ems="10"
+            android:hint="Or write your answer here...\n\n\n"
+            android:fontFamily="@font/pt_sans"
+            android:textSize="16dp"
+            android:textColorHint="@color/dark_grey"
+            android:maxLines="3"
+            android:gravity="start"
             android:background="@drawable/background_option"
-            android:layout_marginTop="10dp">
-
-            <RadioButton
-                android:id="@+id/radioButtonEditable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:button="@null" />
-
-            <EditText
-                android:id="@+id/editTextRadio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="text|textMultiLine|textCapSentences"
-                android:padding="20dp"
-                android:ems="10"
-                android:hint="Or write your answer here...\n\n\n"
-                android:fontFamily="@font/pt_sans"
-                android:textSize="16dp"
-                android:textColorHint="@color/dark_grey"
-                android:background="@null"
-                android:maxLines="3"
-                android:gravity="start" />
-
-        </LinearLayout>
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
     <Button

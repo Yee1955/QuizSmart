@@ -21,11 +21,11 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ImageView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            tools:srcCompat="@raw/ic_empty_history"
-            android:scaleType="centerCrop"
+            android:layout_height="320dp"
+            android:background="@raw/ic_empty_history"
+            android:scaleType="fitCenter"
             android:visibility="visible" />
 
         <TextView
@@ -48,6 +48,7 @@
             android:visibility="gone" />
 
         <View
+            android:id="@+id/Line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/dark_grey"
