@@ -67,16 +67,16 @@ VALUES ('x.com', 'SpaceX', 123);
 -- Inserting a dummy employee session
 INSERT INTO employee_session (employee_id, session_id, progress, status, answer_string, score_alignment, score_problem_solving, score_communication, score_innovation, score_team_fit, summary)
 VALUES (
-    1,    -- Assuming 1 is a valid employee_id from the employee table
+    2,    -- Assuming 1 is a valid employee_id from the employee table
     1,    -- Assuming 1 is a valid session_id from the session table
     10,   -- Example progress percentage
     'Completed',  -- Example status
     'Answer to a question.',  -- Example answer string
-    4.5,  -- Example score for alignment
-    3.8,  -- Example score for problem solving
-    4.2,  -- Example score for communication
-    3.5,  -- Example score for innovation
-    4.0,  -- Example score for team fit
+    5.0,  -- Example score for alignment
+    5.0,  -- Example score for problem solving
+    5.0,  -- Example score for communication
+    5.0,  -- Example score for innovation
+    5.0,  -- Example score for team fit
     'Employee performed well in all areas.'  -- Example summary
 );
 
