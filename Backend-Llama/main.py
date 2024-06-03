@@ -116,7 +116,7 @@ def evaluateCandidateResponses(questionString, answerString, jobDetailsString, m
         f"**Problem Solving and Critical Thinking: [0.00 to 5.00]**\n"
         f"**Communication Skills: [0.00 to 5.00]**\n"
         f"**Innovation and Creativity: [0.00 to 5.00]**\n"
-        f"**: [0.00 to 5.00]**\n"
+        f"**Cultural and Team Fit: [0.00 to 5.00]**\n"
         f"@@Overall Summary: [No More Than 15 Words Summary]**\n"
         f"[/INST]"
     )
