@@ -27,5 +27,3 @@ A Python backend service, perhaps for handling specific business logic or servic
 ## Database
 - **DB UML.drawio**: UML diagram representing the database schema.
 - **DB_Query.sql**: SQL queries for database operations.
-
-For detailed descriptions and instructions, refer to the README files within each directory.
