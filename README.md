@@ -1,4 +1,4 @@
-# Project Structure
+# QuizSmart
 ![screenshot](/src/cover.png)
 This project consists of several components, each contributing to the full functionality of the application. Here is a brief overview of the top-level directories:
 
